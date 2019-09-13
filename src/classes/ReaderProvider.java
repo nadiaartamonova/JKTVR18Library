@@ -35,9 +35,12 @@ public class ReaderProvider {
         System.out.println("Введите год рождения ");
         reader.setYear(new Integer(scanner.nextLine()));
         
+        System.out.println(" Для сохранения читателя нажмите y / n - отмена сохранения");
         
-        
-        
-        return reader;
+        String flag = scanner.next();
+        if("y".equals(flag)){
+            return reader;
+        }
+        return null;
     }
 }

@@ -19,6 +19,7 @@ public class App {
         List<Book> listBooks=new ArrayList<>();//generic list interface
         List<Reader> listReaders=new ArrayList<>();
         List<History> listHistories=new ArrayList<>();
+        HistoryProvider historyProvider = null;
         //-------------SCaNNER---------------
         
         Scanner scanner = new Scanner(System.in);
@@ -43,39 +44,67 @@ public class App {
                     case "1":
                          System.out.println("1. Добавить книгу в библиотеку");
                          BookProvider bookProvider = new BookProvider();
-                         listBooks.add(bookProvider.createBook());
+                         Book book = bookProvider.createBook();
+                         if(book==null){
+                             System.out.println("Книгу внести не удалось");                         
+                         }else{
+                             listBooks.add(book);
+                             System.out.println("Книга добавлена");
+                         }
+                         
+                         //listBooks.add(bookProvider.createBook());
                          
                         break;
                         
                     case "2":
                         System.out.println("2. Добавить читателя в список");
                         ReaderProvider readerProvider = new ReaderProvider();
-                        listReaders.add(readerProvider.createReader());
+                        Reader reader = readerProvider.createReader();
+                        
+                        if(reader==null){
+                             System.out.println("Читателя внести не удалось");                         
+                        }else{
+                             listReaders.add(reader);
+                             System.out.println("Читатель добавлен");
+                        }
+                        
                         break;
 
                     case "3":
                         System.out.println("3. Читатель взял книгу на дом");
                         
-                        HistoryProvider historyProvider = new HistoryProvider();
-                        listHistories.add(historyProvider.createHistory());
+                        historyProvider = new HistoryProvider();
+                        History history = historyProvider.createHistory(listBooks,listReaders);
+                        
+                        if(history==null){
+                             System.out.println("Книгу внести не удалось");                         
+                         }else{
+                             listHistories.add(history);
+                             System.out.println("Книга выдана");
+                         }
+                        
+                        
                         break;
 
                     case "4":
+                                    
                         System.out.println("4. Читатель вернул книгу в библиотеку");
+                        historyProvider.returnBook(listHistories);
+                        
                         break;
                         
                     case "5":
                         System.out.println("5. Список книг");
-                        for (Book book : listBooks){
-                            System.out.println(book.toString());
+                        for (Book b : listBooks){
+                            System.out.println(b.toString());
                         }
                         break;
                         
                     case "6":
                         System.out.println("5. Список Читателей");
                         
-                        for (Reader reader : listReaders){
-                            System.out.println(reader.toString());
+                        for (Reader r : listReaders){
+                            System.out.println(r.toString());
                         }
                         break;
                     case "0":

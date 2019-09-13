@@ -22,7 +22,12 @@ public class BookProvider {
         System.out.println("Введите год издания: ");
         book.setYear(new Integer(scanner.nextLine()));
         
+        System.out.println(" Для сохранения книги в библиотеку нажмите y / n - отмена сохранения");
         
-        return book;
+        String flag = scanner.next();
+        if("y".equals(flag)){
+            return book;
+        }
+        return null;
     }
 }
