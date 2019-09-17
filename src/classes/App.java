@@ -9,17 +9,28 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class App {
+public class App { 
+    List<Book> listBooks=new ArrayList<>();//generic list interface
+    SaverToFile saverToFile =new SaverToFile();
+    List<Reader> listReaders=new ArrayList<>();
+    List<History> listHistories=new ArrayList<>();
+    
+    
+    public App() {
+        listBooks.addAll(saverToFile.loadListBooks());
+        listReaders.addAll(saverToFile.loadListReaders());
+        listHistories.addAll(saverToFile.loadListHistories());
+    }
+    
     public void run(){
-
+        HistoryProvider historyProvider = new HistoryProvider();
         String operation="0";
         boolean badOperation=false;
         
         //-------------List------------------
-        List<Book> listBooks=new ArrayList<>();//generic list interface
-        List<Reader> listReaders=new ArrayList<>();
-        List<History> listHistories=new ArrayList<>();
-        HistoryProvider historyProvider = null;
+       
+        
+        
         //-------------SCaNNER---------------
         
         Scanner scanner = new Scanner(System.in);
@@ -49,6 +60,7 @@ public class App {
                              System.out.println("Книгу внести не удалось");                         
                          }else{
                              listBooks.add(book);
+                             saverToFile.saveBooks(listBooks);
                              System.out.println("Книга добавлена");
                          }
                          
@@ -65,6 +77,7 @@ public class App {
                              System.out.println("Читателя внести не удалось");                         
                         }else{
                              listReaders.add(reader);
+                             saverToFile.saveReaders(listReaders);
                              System.out.println("Читатель добавлен");
                         }
                         
@@ -73,13 +86,14 @@ public class App {
                     case "3":
                         System.out.println("3. Читатель взял книгу на дом");
                         
-                        historyProvider = new HistoryProvider();
+                        
                         History history = historyProvider.createHistory(listBooks,listReaders);
                         
                         if(history==null){
                              System.out.println("Книгу внести не удалось");                         
                          }else{
                              listHistories.add(history);
+                             saverToFile.saveHistories(listHistories);
                              System.out.println("Книга выдана");
                          }
                         
@@ -90,6 +104,8 @@ public class App {
                                     
                         System.out.println("4. Читатель вернул книгу в библиотеку");
                         historyProvider.returnBook(listHistories);
+                        saverToFile.saveHistories(listHistories);
+                        
                         
                         break;
                         
@@ -101,7 +117,7 @@ public class App {
                         break;
                         
                     case "6":
-                        System.out.println("5. Список Читателей");
+                        System.out.println("6. Список Читателей");
                         
                         for (Reader r : listReaders){
                             System.out.println(r.toString());
