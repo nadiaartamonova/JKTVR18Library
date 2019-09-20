@@ -1,6 +1,7 @@
 
 package classes;
 
+import Interfaces.Saver;
 import entity.Book;
 import entity.History;
 import entity.Reader;
@@ -15,12 +16,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SaverToFile {
+public class SaverToFile implements Saver{
     private FileOutputStream fos = null;
     private ObjectOutputStream oos = null;
     
     FileInputStream fileInputStream=null;
     ObjectInputStream objectInputStream = null;
+    @Override
     public void saveBooks(List<Book> listBooks){
         try {
             fos = new FileOutputStream("Books.txt");
@@ -42,6 +44,7 @@ public class SaverToFile {
         }
     }
     
+    @Override
     public void saveReaders(List<Reader> listReaders){
         try {
             fos = new FileOutputStream("Readers.txt");
@@ -65,6 +68,7 @@ public class SaverToFile {
         }
     }
    
+    @Override
     public void saveHistories(List<History> listHistories){
         try {
             fos = new FileOutputStream("Histories.txt");
@@ -89,6 +93,7 @@ public class SaverToFile {
     }
     
     
+    @Override
     public List<Book> loadListBooks(){
 
         List<Book> listBooks=new ArrayList<>();
@@ -121,6 +126,7 @@ public class SaverToFile {
     
     }
     
+    @Override
     public List<Reader> loadListReaders(){
         
         List<Reader> listReaders=new ArrayList<>();
@@ -152,6 +158,7 @@ public class SaverToFile {
         return listReaders;
     }
    
+    @Override
     public List<History> loadListHistories(){
         
         List<History> listHistories=new ArrayList<>();
