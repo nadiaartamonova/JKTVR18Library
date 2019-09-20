@@ -53,7 +53,7 @@ public class App {
                 operation=scanner.next();
                 switch (operation) {
                     case "1":
-                         System.out.println("1. Добавить книгу в библиотеку");
+                         System.out.println("---------Добавить книгу в библиотеку---------");
                          BookProvider bookProvider = new BookProvider();
                          Book book = bookProvider.createBook();
                          if(book==null){
@@ -69,7 +69,7 @@ public class App {
                         break;
                         
                     case "2":
-                        System.out.println("2. Добавить читателя в список");
+                        System.out.println("---------Добавить читателя в список---------");
                         ReaderProvider readerProvider = new ReaderProvider();
                         Reader reader = readerProvider.createReader();
                         
@@ -84,7 +84,7 @@ public class App {
                         break;
 
                     case "3":
-                        System.out.println("3. Читатель взял книгу на дом");
+                        System.out.println("---------Читатель взял книгу на дом---------");
                         
                         
                         History history = historyProvider.createHistory(listBooks,listReaders);
@@ -102,7 +102,7 @@ public class App {
 
                     case "4":
                                     
-                        System.out.println("4. Читатель вернул книгу в библиотеку");
+                        System.out.println("---------Читатель возвращает книгу в библиотеку---------");
                         historyProvider.returnBook(listHistories);
                         saverToFile.saveHistories(listHistories);
                         
@@ -110,14 +110,14 @@ public class App {
                         break;
                         
                     case "5":
-                        System.out.println("5. Список книг");
+                        System.out.println("---------Список книг--------");
                         for (Book b : listBooks){
                             System.out.println(b.toString());
                         }
                         break;
                         
                     case "6":
-                        System.out.println("6. Список Читателей");
+                        System.out.println("---------Список Читателей---------");
                         
                         for (Reader r : listReaders){
                             System.out.println(r.toString());
