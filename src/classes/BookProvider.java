@@ -13,16 +13,19 @@ public class BookProvider {
         //----------------- Inset Data of book--------------------
         book.setId(null);
         
-        System.out.println("Введите название: ");
+        System.out.println("Название: ");
         book.setTitle(scanner.nextLine());
         
-        System.out.println("Введите автора: ");
+        System.out.println("Автора: ");
         book.setAuthor(scanner.nextLine());
         
-        System.out.println("Введите год издания: ");
-        book.setYear(new Integer(scanner.nextLine()));
+        System.out.println("Год издания: ");
+        book.setYear(Integer.parseInt(scanner.nextLine()));
         
-        System.out.println(" Для сохранения книги в библиотеку нажмите y / n - отмена сохранения");
+        System.out.println("Количество экз.: ");
+        book.setYear(Integer.parseInt(scanner.nextLine()));
+        
+        System.out.println("Для сохранения книги в библиотеку нажмите y / n - отмена сохранения");
         
         String flag = scanner.next();
         if("y".equals(flag)){

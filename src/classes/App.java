@@ -21,7 +21,7 @@ public class App {
     public App() {
         listBooks.addAll(saver.loadListBooks());
         listReaders.addAll(saver.loadListReaders());
-        //listHistories.addAll(saver.loadListHistories());
+        listHistories.addAll(saver.loadListHistories());
     }
     
     public void run(){
@@ -48,6 +48,7 @@ public class App {
                 System.out.println("4. Возвращение книги");
                 System.out.println("5. Список книг");
                 System.out.println("6. Список читателей");
+                System.out.println("7. Список выданных книг");
                 
                 System.out.println("0. Выход");
                 badOperation=false;
@@ -123,6 +124,26 @@ public class App {
                         
                         for (Reader r : listReaders){
                             System.out.println(r.toString());
+                        }
+                        break;
+                        
+                    case "7":
+                        System.out.println("---------Список выданных книг---------");
+                        boolean flagOn=false;
+                        
+                        for(History h: listHistories){
+                            if(h.getReturnDate()==null){
+                                System.out.printf("%d у читателя: %s %s. Книга: \"%s%n"
+                                        ,h.getId()
+                                        ,h.getReader().getName()
+                                        ,h.getReader().getLastname()
+                                        ,h.getBook().getTitle()
+                                        );
+                                flagOn=true;
+                            }
+                        }
+                        if(!flagOn){
+                            System.out.println("Нет выданных книг");
                         }
                         break;
                     case "0":

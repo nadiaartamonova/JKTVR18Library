@@ -27,8 +27,12 @@ public class HistoryProvider {
         
         System.out.println("Список книг:");
         for(int i=0;i<listBooks.size(); i++){
-            System.out.printf("%d. Название: %s ,Автор: %s%n",i+1,listBooks.get(i).getTitle(),listBooks.get(i).getAuthor());
-        
+            if(listBooks.get(i).getQuantity()>0){
+                System.out.printf("%d. Название: %s ,Автор: %s%n"
+                        ,i+1
+                        ,listBooks.get(i).getTitle()
+                        ,listBooks.get(i).getAuthor());
+            }
         }
         
         System.out.println("Список читателей:");
@@ -43,6 +47,7 @@ public class HistoryProvider {
         System.out.println("Выберите номер читателя");
         int numReader=scanner.nextInt();
         
+        history.getBook().setQuantity(history.getBook().getQuantity()-1);
         history.setBook(listBooks.get(numBook-1));
         history.setReader(listReaders.get(numReader-1));
         history.setTakeOnDate(new Date());
@@ -58,7 +63,10 @@ public class HistoryProvider {
         for(int i=0;i<histories.size(); i++){
             if(histories.get(i).getReturnDate()==null)
             {
-               System.out.printf("%d. Название книги: %s ,читатель: %s %s%n",i+1,histories.get(i).getBook().getTitle(),histories.get(i).getReader().getName(),histories.get(i).getReader().getLastname());
+               System.out.printf("%d. Название книги: %s ,читатель: %s %s%n"
+                       ,i+1,histories.get(i).getBook().getTitle()
+                       ,histories.get(i).getReader().getName()
+                       ,histories.get(i).getReader().getLastname());
             }
             flag=true;
         }

@@ -27,6 +27,7 @@ public class Book implements Serializable {
     private String title;
     private String author;
     private int year;
+    private int quantity;
 
     public Book() {
     }
@@ -36,6 +37,15 @@ public class Book implements Serializable {
         this.title = title;
         this.author = author;
         this.year = year;
+        
+    }
+
+    public Book(Long id, String title, String author, int year, int quantity) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.quantity = quantity;
     }
     
     
@@ -63,6 +73,14 @@ public class Book implements Serializable {
         return title;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         return "Book{" 
@@ -70,6 +88,7 @@ public class Book implements Serializable {
                 + ", title=" + title 
                 + ", author=" + author 
                 + ", year=" + year 
+                + ", quantity=" + quantity
                 + '}';
     }
 
