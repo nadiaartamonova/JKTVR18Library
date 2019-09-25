@@ -52,17 +52,21 @@ public class SaverToBase implements Saver{
 
     @Override
     public void saveHistories(List<History> listHistories) {
-        
-        for(History history: listHistories){
-            
-            tx.begin();
-            em.persist(history);
-            tx.commit();
-            
-            
+         tx.begin();           
+
+        for(History h: listHistories){
+            if(h.getId()== null){
+                
+                em.persist(h);
+                
+                //em.detach(h);
+            }
+            em.flush();
         }
-      //  listHistories.clear();
-      //  listHistories.addAll(this.loadListHistories());
+        tx.commit();
+        
+    //    listHistories.clear();
+    //    listHistories.addAll(this.loadListHistories());
     }
 
     @Override

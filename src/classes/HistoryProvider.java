@@ -17,11 +17,11 @@ import java.util.Scanner;
  * @author pupil
  */
 public class HistoryProvider {
-    History history = new History();
+    
     Scanner scanner = new Scanner(System.in);
     
     public History createHistory(List<Book> listBooks, List<Reader> listReaders){
-        
+       History history = new History(); 
         
         //----------------- Inset Data of book--------------------
         
@@ -47,8 +47,10 @@ public class HistoryProvider {
         System.out.println("Выберите номер читателя");
         int numReader=scanner.nextInt();
         
-        history.getBook().setQuantity(history.getBook().getQuantity()-1);
+        
         history.setBook(listBooks.get(numBook-1));
+        history.getBook().setQuantity(history.getBook().getQuantity()-1);
+       
         history.setReader(listReaders.get(numReader-1));
         history.setTakeOnDate(new Date());
         
@@ -75,7 +77,11 @@ public class HistoryProvider {
         if(flag){
             System.out.println("Выберите номер истории");
             int numHistory=scanner.nextInt();
+            
             histories.get(numHistory-1).setReturnDate(new Date());
+            histories.get(numHistory-1).getBook()
+                    .setQuantity(histories.get(numHistory-1)
+                    .getBook().getQuantity()+1);
             System.out.println("Книга возвращена в библиотеку");
         }else{
             System.out.println("Нет выданных книг");

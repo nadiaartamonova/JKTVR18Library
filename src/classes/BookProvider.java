@@ -23,7 +23,7 @@ public class BookProvider {
         book.setYear(Integer.parseInt(scanner.nextLine()));
         
         System.out.println("Количество экз.: ");
-        book.setYear(Integer.parseInt(scanner.nextLine()));
+        book.setQuantity(Integer.parseInt(scanner.nextLine()));
         
         System.out.println("Для сохранения книги в библиотеку нажмите y / n - отмена сохранения");
         
