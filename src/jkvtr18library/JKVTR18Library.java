@@ -3,10 +3,16 @@ package jkvtr18library;
 
 import classes.App;
 
-public class JKVTR18Library {
 
+
+public class JKVTR18Library {
+    
     public static void main(String[] args) {
-        App app = new App();
+        String flag ="base";
+        if(args !=null ){
+            flag = args[0];
+        }
+        App app = new App(flag);
         app.run();
     }
     

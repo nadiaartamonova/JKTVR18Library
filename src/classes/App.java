@@ -10,15 +10,24 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class App { 
-    List<Book> listBooks=new ArrayList<>();//generic list interface
-    //Saver saver =new SaverToFile();
-    Saver saver =new SaverToBase();
-    List<Reader> listReaders=new ArrayList<>();
-    List<History> listHistories=new ArrayList<>();
+public class App {
     
+    private List<Book> listBooks=new ArrayList<>();//generic list interface
+    private List<Reader> listReaders=new ArrayList<>();
+    private List<History> listHistories=new ArrayList<>();
+    private Saver saver;
+    String flag;
     
-    public App() {
+    public App(String flag) {
+        
+        if(flag.equals("base")){
+            saver =new SaverToBase();
+        }else if (flag.equals("file")){
+            saver =new SaverToFile();
+        }else{
+            saver =new SaverToBase();
+            }
+            
         listBooks.addAll(saver.loadListBooks());
         listReaders.addAll(saver.loadListReaders());
         listHistories.addAll(saver.loadListHistories());
